@@ -1,0 +1,263 @@
+
+<script src="~/Content/admin-lte/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- /.box -->
+
+<div class="box">
+  <div class="box-header with-border">
+      <h3 class="box-title">Danh sách Học viên</h3>
+      <button type="button" class="btn btn-success pull-right" (click)="showModal(studentForm)"><i class="fa fa-plus"></i> <span> Thêm mới</span></button>      
+  </div>
+  <div class="box-body">
+        <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+                <tr>
+                    <th>
+                        <p>STT</p>
+                    </th>
+                    <th>
+                        <p>Họ</p>
+                    </th>
+                    <th>
+                        <p>Tên</p>
+                    </th>
+                    <th>
+                        <p>Giới tính</p>
+                    </th>   
+                    <th>
+                        <p>Trường ĐH</p>
+                    </th>
+                    <th>
+                        <p>Chuyên ngành</p>
+                    </th>
+                    <th>
+                        <p>Ngày sinh</p>
+                    </th>
+                    <th>
+                        <p>Địa chỉ</p>
+                    </th>
+                    <th>
+                        <p>Email</p>
+                    </th>
+                    <th>
+                        <p>SDT</p>
+                    </th>
+                    <th class="option-width">
+        
+                    </th>
+                </tr>
+          </thead>
+          
+          <tbody>
+            <tr *ngFor="let item of students; let i=index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.lastname }}</td>
+                <td>{{ item.firstname }}</td>
+                <td>{{ item.gender == 1 ? "Male" : "Female" }}</td>
+                <td>{{ item.university.universityname }}</td>
+                <td>{{ item.major.majorname }}</td>
+                <td>{{ item.dob | date : 'dd-MM-yyyy'}}</td>
+                <td>{{ item.address }}</td>
+                <td>{{ item.email }}</td>
+                <td></td>
+                <td>
+                    <button class="btn btn-default" (click)="showModal(studentForm, $event, item.id)"><i class="fa fa-edit text-primary"></i></button>
+                    <button class="btn btn-default" (click)="showDeleteModal($event, item.id)"><i class="fa fa-trash-o text-danger"></i></button> 
+                </td>
+            </tr>             
+          </tbody>                   
+      </table>      
+    </div>
+</div>
+
+<div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>                
+                    <h4 id="dialog-sizes-name1" class="modal-title">{{student.studentid === undefined || student.studentid === 0 ? 'Tạo mới' : 'Chỉnh sửa thông tin'}}</h4>
+                </div>
+            <div class="modal-body">
+                <form #studentForm="ngForm">
+                    <div class="box-body">
+                        <input id="id" hidden name="id" [(ngModel)]="student.id"/>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6">
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="txtLastName" class="col-sm-2 col-md-3 col control-p">Họ</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <input required type="text" class="form-control" id="txtLastName" placeholder="" [(ngModel)]="student.lastname" name="lastname">
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="txtFirstName" class="col-sm-2 col-md-3 col control-p">Tên</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <input required type="text" class="form-control" id="txtFirstName" placeholder="" [(ngModel)]="student.firstname" name="firstname">
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="gender" class="col-sm-2 col-md-3 col control-p">Giới tính</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <input type="radio" name="gender" [value]="true" [(ngModel)]="student.gender"> Nam
+                                            <input type="radio" name="gender" [value]="false" [(ngModel)]="student.gender"> Nữ
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="txtIdentityNumber" class="col-sm-2 col-md-3 col control-p">CMND</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <input required type="text" class="form-control" id="txtIdentityNumber" placeholder="" [(ngModel)]="student.identitynumber" name="identitynumber">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="datepicker" class="col-sm-2 col-md-3 control-p">Ngày sinh</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input required type="date" class="form-control pull-left" id="dtpDateofBirth" style="width:242px" [(ngModel)]="student.dob" name="dob">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="txtAddress" class="col-sm-2 col-md-3 control-p">Địa chỉ</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <input required type="text" class="form-control" id="txtAddress" placeholder="" [(ngModel)]="student.address" name="address">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+            
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="txtEmail" class="col-sm-2 col-md-3 control-p">Email</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <input required type="email" class="form-control" id="txtEmail" placeholder="" [(ngModel)]="student.email" name="email">
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="txtPhone" class="col-sm-2 col-md-3 control-p">SDT</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <input required type="text" class="form-control" id="txtPhone" placeholder="" [(ngModel)]="student.phone" name="phone">
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="drdownUniversity" class="col-sm-2 col-md-3 control-p">Trường ĐH</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <select required class="form-control" id="drdownUniversity" [(ngModel)]="student.universityid" name="universityid">
+                                                <option *ngFor="let option of universities" [ngValue]="option.universityid">{{option.universityname}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="drdownMajor" class="col-sm-2 col-md-3 control-p">Chuyên ngành</label>
+                                            
+                                        <div class="col-sm-10 col-md-9">
+                                            <select required class="form-control" id="drdownMajor" [(ngModel)]="student.majorid" name="majorid" convert-to-number>
+                                                <option *ngFor="let option of majors" [ngValue]="option.majorid">{{option.majorname}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="row">
+                                    <div class="form-group col-sm-12 col-md-12">
+                                        <label for="dtpStartDate" class="col-sm-2 col-md-3 control-p">Ngày có thể làm việc</label>
+                
+                                        <div class="col-sm-10 col-md-9">
+                                            <div class="input-group date">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="date" class="form-control pull-left" id="dtpDateofBirth" style="width:242px" [(ngModel)]="student.datereadytowork" name="readyworkdate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                  <div class="col-sm-6">
+                                      <label for="rbtnDeposit" class="col-sm-6 control-label">Đã đóng tiền cọc</label>
+              
+                                      <div class="col-sm-6">
+                                          <input type="checkbox" id="rbtnDeposit" value="true" [(ngModel)]="student.deposits" name="deposits" ng-check="student.deposits"/>
+                                      </div>
+                                  </div>
+              
+                                  <div class="col-sm-6">
+                                      <label for="rbtnCertification" class="col-sm-6 control-label pl-0" style="padding-left: 0;">Đã cấp chứng chỉ</label>
+                                      <div class="col-sm-6">
+                                          <input type="checkbox" id="rbtnCertification" value="true" [(ngModel)]="student.certification" name="certification" ng-check="student.certification"/>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">                
+                <button type="submit" class="btn btn-success" id="btnSave" (click)="save()" [disabled]="!studentForm.form.valid">{{ (student.id === undefined || student.id === 0) ? 'Tạo':'Lưu'}}</button>                   
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModal.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title pull-left">Xác nhận</h4>          
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc chắn muốn xóa?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light btn-cancel" (click)="deleteModal.hide()">Hủy</button>
+          <button type="button" class="btn btn-danger" (click)="delete()">Xóa</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+

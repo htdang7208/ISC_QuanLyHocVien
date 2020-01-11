@@ -1,0 +1,225 @@
+<section class="content">
+  <div class="row">
+      <div class="col-xs-12">
+          <div class="box">
+              <div class="box-header">
+                  <div class="col-md-4">
+                      <h3 class="box-title">DANH SÁCH KHÓA HỌC</h3>
+                  </div>
+                  <div class="col-md-8 text-right">
+                      <a class="btn btn-success" (click)="showModal($event)"><i class="fa fa-plus"></i><span> Thêm mới</span>
+                      </a>
+                  </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                    <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered table-hover table-striped">
+                      <thead>
+                          <tr>
+                              <th class="text-center">STT</th>
+                              <th class="text-center">Tên khóa học</th>
+                              <th class="text-center">Ngày bắt đầu</th>
+                              <th class="text-center">Ngày kết thúc</th>
+                              <th class="text-center">Chương trình học</th>
+                              <th class="text-center">Ghi chú</th>
+                              <th style="width: 100px;"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let row of courses; let i = index">
+                              <td class="text-center">{{ i + 1 }}</td>
+                              <td>{{row.coursename}}</td>                                
+                              <td>{{row.startdate | date : 'dd-MM-yyyy'}}</td>
+                              <td>{{row.enddate | date : 'dd-MM-yyyy'}}</td>
+                              <td>
+                                <ul>
+                                    <li *ngFor="let item of row.listTrainings"> {{item.trainingname}}</li>
+                                </ul>
+                                </td>
+                              <td>{{row.note}}</td>
+                              <td class="text-center">
+                                  <button class="btn btn-default" (click)="showModal($event, row.courseid)"><i class="fa fa-edit text-primary"></i></button>
+                                  <button class="btn btn-default" (click)="showDeleteModal($event, row.courseid)"><i class="fa fa-trash-o text-danger"></i></button>
+                              </td>
+                          </tr>
+                  </table>
+              </div>
+              <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+      </div>
+      <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>
+
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Xác nhận xóa</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có chắc muốn xóa {{course.coursename}} không?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="deleteModal.hide()">Hủy</button>
+          <button type="button" (click)="delete($event)" class="btn btn-danger">Xóa</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+<form #frm="ngForm">
+    <div bsModal #modal='bs-modal' id="addCourse" class="modal fade" tabindex="-1"
+        role="dialog" aria-labelledby="dialog-sizes-name1">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+                <div class="modal-header">
+                      <button type="button" class="close" (click)="modal.hide()" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                      <h4 class="modal-title">{{course.courseid === undefined || course.courseid === 0 ? 'Tạo khóa mới' : 'Chỉnh sửa thông tin'}}</h4>
+                  </div>
+                <div class="modal-body" style="margin-left: 1em;">
+                    <div class="row">
+                          <div class="col-md-6 col-sm-12">
+                              <div class="row">
+                                  <div class="form-group col-sm-12">
+                                      <label for="txtName" class="col-sm-4 col control-label">Tên khóa học</label>
+    
+                                      <div class="col-sm-10">
+                                          <input required #name="ngModel" [(ngModel)]="course.coursename" type="text" class="form-control" name="txtname" placeholder="">
+                                      </div>
+                                      <div class="row">
+                                            <div class="col-md-9 text-danger text-center" *ngIf="name.touched">
+                                              <div *ngIf="name.errors?.required">
+                                                Tên khóa học không được trống!
+                                              </div>
+                                            </div>
+                                            <div class="col-md-3"></div>
+                                        </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="form-group col-sm-12">
+                                      <label for="gender" class="col-sm-6 col control-label">Ngày bắt đầu </label>
+    
+                                      <div class="input-group date col-xs-12 col-md-10" style="margin-left: 1em;">
+                                          <div class="input-group-addon">
+                                              <i class="fa fa-calendar"></i>
+                                          </div>
+                                          <input required #startdate="ngModel" [(ngModel)]="course.startdate" type="date" class="form-control" name="txtStartdate" id="datepicker">
+                                      </div>
+                                      <div class="row">
+                                            <div class="col-md-9 text-danger text-center" *ngIf="startdate.touched">
+                                              <div *ngIf="startdate.errors?.required">
+                                                Ngày bắt đầu không được trống!
+                                              </div>
+                                            </div>
+                                            <div class="col-md-3"></div>
+                                        </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="form-group col-sm-12">
+                                      <label for="gender" class="col-sm-6 col control-label">Ngày kết thúc</label>
+    
+                                      <div class="input-group date col-xs-12 col-md-10" style="margin-left: 1em;">
+                                          <div class="input-group-addon">
+                                              <i class="fa fa-calendar"></i>
+                                          </div>
+                                          <input required #enddate="ngModel" [(ngModel)]="course.enddate" type="date" class="form-control" name="txtEnddate" id="datepicker">
+                                      </div>
+                                      <div class="row">
+                                            <div class="col-md-9 text-danger text-center" *ngIf="enddate.touched">
+                                              <div *ngIf="enddate.errors?.required">
+                                                Ngày kết thúc không được trống!
+                                              </div>
+                                            </div>
+                                            <div class="col-md-3"></div>
+                                        </div>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="form-group col-sm-12">
+                                      <label for="gender" class="col-sm-4 col control-label">Ghi chú</label>
+    
+                                      <div class="col-sm-10">
+                                          <div class="">
+                                              <textarea #note="ngModel" name="txtNote" [(ngModel)]="course.note" id="editor1" rows="0" cols="0" style="margin: 0px; width: 20em; height: 5em;"> Type your note here
+                                            </textarea>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row" style="margin-top: 1rem;">
+                                <div class="col-sm-12">
+                                    <label>DANH SÁCH CHƯƠNG TRÌNH HỌC CỦA KHÓA</label>
+                                    <table id="subjectsSelectedTable" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>STT</th>
+                                                <th>Tên</th>
+                                                <th>Thời lượng</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dataSubjectsSelectedTable">
+                                            <tr *ngFor="let item of selectedTrainings; let i = index">
+                                                <td>{{ i + 1 }}</td>
+                                                <td>{{ item.trainingname }}</td>
+                                                <td>{{ item.numberweek }}</td>
+                                                <td class="text-center">
+                                                    <button class="fa fa-trash-o btn btn-danger" (click)="removeFromSelectedTrainings(i)"></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </div>                                                           
+                        </div> 
+                        <div class="col-md-6 col-sm-12">
+                                <label>DANH SÁCH CHƯƠNG TRÌNH HỌC</label>
+                                <table id="subjectsTable" class="table table-bordered table-hover">                           
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên</th>
+                                            <th>Thời lượng</th>
+                                            <th></th>   
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dataSubjectsTable">
+                                        <tr *ngFor="let item of trainings; let i = index">
+                                            <td>{{i + 1}}</td>
+                                            <td>{{item.trainingname}}</td>
+                                            <td>{{item.numberweek}}</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-success" (click)="checkSelectedTraining(item.trainingid)"><i class="fa fa-plus text-default"></i></button>
+                                            </td>
+                                        </tr>                               
+                                    </tbody>
+                                </table>
+                        </div>                                                               
+                    </div>              
+                </div>
+                <div class="modal-footer">
+                    <input 
+                    type="submit" 
+                    class="btn btn-success" 
+                    (click)="save()" [disabled]="frm.invalid"
+                    value="{{course.courseid === undefined || course.courseid === 0 ? 'Tạo' : 'Lưu'}}"
+                      />                      
+                </div>
+            </div> 
+        </div>
+    </div>
+</form>
+
+

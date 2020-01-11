@@ -1,0 +1,151 @@
+<!-- <link rel="stylesheet" href="/assets/css/dataTables.min.css" /> -->
+<h2>Môn học</h2>
+<div class="box box-info">
+    <div class="box-header with-border">
+        <h3 class="box-title">Danh sách môn học</h3>
+        <button class="btn btn-success pull-right" (click)="showModal($event, modal)"><i class="fa fa-plus"></i> <span> Thêm mới</span></button>
+
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form>
+        <div class="container-fluid">
+            <div class="box-body">
+                <input id="id" hidden />
+                <div class="row">
+                    <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                      <thead>
+                        <tr>
+                          <th style="width: 50px;">STT</th>
+                          <th>Tên môn học</th>
+                          <th>Số tiết học</th>
+                          <th>Trạng thái</th>
+                          <th style="width: 70px;"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let row of subjects; let i = index">
+                          <th>{{ i + 1}}</th>
+                          <th>{{row.subjectname}}</th>
+                          <td>{{row.numberlesson}}</td>
+                          <td>{{row.status == 1 ? "Đang giảng dạy" : "Ngừng giảng dạy"}}</td>
+                          <td>
+                              <button class="btn btn-default" (click)="showModal($event, row.subjectid)"><i class="fa fa-edit text-primary"></i></button>
+                              <button class="btn btn-default" (click)="showDeleteModal($event, row.subjectid)"><i class="fa fa-trash-o text-danger"></i></button> 
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Add, Edit-->
+<form #frm="ngForm">
+    <div bsModal #modal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 id="dialog-sizes-name1" class="modal-title">{{subject.subjectid === undefined || subject.subjectid === 0 ? 'Thêm mới' : 'Chỉnh sửa'}}</h4>
+              <button type="button" class="close pull-right" (click)="modal.hide()" aria-label="Close">
+                <span aria-hidden ="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- txtsubjectname -->
+              <div class="row form-group">
+                <div class="col-md-4">
+                  <label for="txtsubjectname">Tên môn học</label>
+                </div>
+                <div class="col-md-8">
+                  <input required #txtsubjectname="ngModel" type="text" name="subjectname" class="form-control" id="txtsubjectname" placeholder="Nhập tên môn học" [(ngModel)]="subject.subjectname"/>
+                  <div class="row">
+                      <div class="col-md-9 text-danger" *ngIf="txtsubjectname.touched">
+                          <div *ngIf="txtsubjectname.errors?.required">Tên môn học không được để trống!</div>
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+                </div>
+              </div>
+              <!-- /txtName -->
+              <!-- txtnumberoflesson -->
+              <div class="row form-group">
+                <div class="col-md-4">
+                    <label for="exampleFormControlSelect1">Số tiết học</label></div>
+                <div class="col-md-8">
+                  <input 
+                      #numberlesson = "ngModel"
+                      type="number" 
+                      min="1" 
+                      max="255" 
+                      step="1" 
+                      class="form-control" 
+                      name="subjectstatus" 
+                      id="exampleFormControlSelect1" 
+                      [(ngModel)]="subject.numberlesson"
+                  />
+                  <div class="row">
+                      <div class="col-md-9 text-danger" *ngIf="numberlesson.touched">
+                          <div *ngIf="numberlesson.errors?.required">Số tiết học không được để trống!</div>
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+                </div>
+              </div>
+              <!-- /txtnumberoflesson -->
+              <!-- Status -->
+              <div class="row form-group">
+                <div class="col-md-4">
+                    <label for="exampleFormControlSelect1">Trạng thái</label></div>
+                <div class="col-md-8">
+                  <select #status="ngModel" [(ngModel)]="subject.status" name="status">
+                    <option [ngValue]="true"> Đang giảng dạy </option>
+                    <option [ngValue]="false"> Ngừng giảng dạy </option>
+                  </select>
+                  <div class="row">
+                      <div class="col-md-9 text-danger" *ngIf="status.touched">
+                          <div *ngIf="status.errors?.required">Trạng thái phải được xác lập!</div>
+                      </div>
+                      <div class="col-md-3"></div>
+                    </div>
+                </div>
+              </div>
+              <!-- /Status -->
+            </div>
+            <div class="modal-footer">
+                <input 
+                    type="submit" class="btn btn-success" 
+                    (click)="save()" 
+                    [disabled]="frm.invalid"
+                    value="{{subject.subjectid === undefined || subject.subjectid === 0 ? 'Tạo' : 'Lưu'}}"
+                />
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
+<!-- Delete Modal HTML -->
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+<div class="modal-dialog">
+  <div class="modal-content">
+        <form>
+            <div class="modal-header">
+                <h4 class="modal-title">Xóa môn học</h4>
+                <!-- <button type="button" class="close" (click)="deleteModal.hide()" data-dismiss="modal" aria-hidden="true">×</button> -->
+            </div>
+            <div class="modal-body">
+                <p class="text-warning">Bạn có chắc chắn xóa môn {{ subject.subjectname }} không?</p>
+                <!-- <p class="text-warning"><small>This action cannot be undone.</small></p> -->
+            </div>
+            <div class="modal-footer">
+                <button (click)="delete(subject.subjectid)" class="btn btn-danger">Xóa</button>
+                <button (click)="deleteModal.hide()" class="btn btn-default" data-dismiss="modal">Hủy</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

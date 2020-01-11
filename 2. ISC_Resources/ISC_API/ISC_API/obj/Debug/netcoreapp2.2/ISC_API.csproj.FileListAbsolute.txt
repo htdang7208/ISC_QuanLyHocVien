@@ -1,0 +1,44 @@
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.deps.json
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.runtimeconfig.json
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.runtimeconfig.dev.json
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.dll
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.pdb
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.csprojAssemblyReference.cache
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.csproj.CoreCompileInputs.cache
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.RazorAssemblyInfo.cache
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.RazorAssemblyInfo.cs
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.AssemblyInfoInputs.cache
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.AssemblyInfo.cs
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.RazorTargetAssemblyInfo.cache
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.dll
+C:\Users\Qing\Desktop\Code đồ án\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.pdb
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.deps.json
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.runtimeconfig.json
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.runtimeconfig.dev.json
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.dll
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.pdb
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.csprojAssemblyReference.cache
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.csproj.CoreCompileInputs.cache
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.RazorAssemblyInfo.cache
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.RazorAssemblyInfo.cs
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.AssemblyInfoInputs.cache
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.AssemblyInfo.cs
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.RazorTargetAssemblyInfo.cache
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.dll
+C:\Users\Qing\Desktop\Code\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.pdb
+C:\Users\DTocsen\Desktop\Project - BMWA\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.dll
+C:\Users\DTocsen\Desktop\Project - BMWA\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.pdb
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.deps.json
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.runtimeconfig.json
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.runtimeconfig.dev.json
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.dll
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\bin\Debug\netcoreapp2.2\ISC_API.pdb
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.csprojAssemblyReference.cache
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.csproj.CoreCompileInputs.cache
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.RazorAssemblyInfo.cache
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.RazorAssemblyInfo.cs
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.AssemblyInfoInputs.cache
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.AssemblyInfo.cs
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.RazorTargetAssemblyInfo.cache
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.dll
+C:\Users\DTocsen\Desktop\Project - BMWA\3. Others\2. ISC_Resources\ISC_API\ISC_API\obj\Debug\netcoreapp2.2\ISC_API.pdb
